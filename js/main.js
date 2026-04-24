@@ -1,7 +1,7 @@
 import { iniciarMenu } from "../components/menu.js";
 
 const carregarComponente = async (caminho, container) => {
-    try{
+    try {
         const resposta = await fetch(caminho);
 
         if (!resposta.ok) {
@@ -24,7 +24,7 @@ const iniciarLinks = () => {
     document.querySelectorAll('[data-link]').forEach((link) => {
 
         link.addEventListener('click', async (event) => {
-             
+
             event.preventDefault();
 
             const pagina = link.dataset.link;
@@ -36,7 +36,7 @@ const iniciarLinks = () => {
                 menu.classList.remove('active');
 
                 botao.setAttribute('aria-expanded', false);
-                botao.setAttribute('aria-label', 'Abrir Menu');
+                botao.setAttribute('aria-label', 'abrir menu');
             }
 
             await carregarComponente(`./pages/${pagina}.html`, conteudo);
