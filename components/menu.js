@@ -1,34 +1,33 @@
-// inicializa menu 
-export const iniciarMenu = () => {
-    const menus = document.querySelectorAll('[data-menu]');
+// inicializa comportamento do menu mobile //
+    export const iniciarMenu = () =>{
+        const menus = document.querySelectorAll('[data-menu]')
 
-    menus.forEach((menu)=>{
+        menus.forEach((menu) =>{
+        
+        const botao = menu.querySelector('.menu__botao');
 
-    const botao = menu.querySelector('.menu__botao');
+        const toggleMenu = () => {
 
-    const toggleMenu = () =>{
-        menu.classList.toggle('active');
+            menu.classList.toggle('active');
 
-        const ativo = menu.classList.contains('active');
+            const ativo = menu.classList.contains('active');
 
-        botao.setAttribute('aria-expansed', ativo);
-        botao.setAttribute('aria-label', ativo ? 'Fechar Menu': 'Abrir Menu')
-    };
+            botao.setAttribute('aria-expanded', ativo)
+            botao.setAttribute('aria-label', ativo ? 'fechar menu': 'abrir menu')
+        };
 
-    const fecharComEsc = (event) =>{
-        const isEsc = event.key === 'Escape';
-        const ativo = menu.classList.contains('active');
+        const fecharComEsc = (event) => {
+            const isEsc = event.key === 'Escape';
+            const ativo = menu.classList.contains('active');
 
-        if(isEsc && ativo){
-            menu.classList.remove('active')
+            if (isEsc && ativo){
+                menu.classList.remove('active');
 
-            botao.setAttribute('aria-expansed', false)
-            
-        }
-    };
+                botao.setAttribute('aria-expanded', false)
+            }
+        };
 
-    botao.addEventListener('pointerdown', toggleMenu);
-    botao.addEventListener('keydown', fecharComEsc)
-
+        botao.addEventListener('pointerdown', toggleMenu);
+        document.addEventListener('keydown', fecharComEsc)
     });
 };
