@@ -119,33 +119,45 @@
 // carregarComponente('c-test.html', document.querySelector('body'))
 
 
+
 /* Criar uma requisição HTTP com fetch e .then */
-const url = 'https://viacep.com.br/ws/01001000/json/'
+const url = 'https://viacep.com.br/ws/01001000/json/';
+
 const consulta = fetch(url);
 
-consulta.then((resposta) => {
-    if(!resposta.ok){
-        throw new Error("cep invalido")
+consulta
+.then((response) => {
+
+    if(!response.ok){
+        throw new Error('Erro na Requisição.')
     }
-    const resp = resposta.json()
-    console.log(resp)
-    return resp
+    return response.json()
 })
-
-
-// fetch('https://viacep.com.br/ws/01001000/json/')
-// .then((resposta) => {
-
-//     return resposta.json()
-// })
-
 .then((dados) => {
 
+    if(dados.erro){
+        throw new Error('CEP inválido ou não encontrado.')
+    }
     console.log(dados)
-
 })
-.catch((error) => {
+.catch((erro) => {
+    console.warn(erro.message)
+});
 
-    console.warn(error)
-})
+
+
+
+/* Criar uma requisição HTTP com fecth e async/await */
+
+const url = 'https://viacep.com.br/ws/01001000/json/';
+const consulta = fetch(url);
+
+async function buscarCep(){
+    let resposta = await consulta;
+    console.log(resposta)
+    let dataObj = await resposta.json();
+    console.log(dataObj);
+};
+
+buscarCep();
 /* Criar uma requisição HTTP com fecth e async/await */
