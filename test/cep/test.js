@@ -1,6 +1,0 @@
-{ 
-} catch(erro){
-
-    let text =
-    `
-}

@@ -1,6 +1,6 @@
 // inicializa comportamento do menu mobile //
 export const iniciarMenu = () => {
-    const menus = document.querySelectorAll('[data-menu]')
+    const menus = document.querySelectorAll('[data_menu]')
 
     menus.forEach((menu) => {
         const botao = menu.querySelector('.menu__botao');
